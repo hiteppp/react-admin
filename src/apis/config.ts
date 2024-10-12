@@ -1,10 +1,10 @@
 export const apiConfig = {
   login: {
-    path: '/login',
-    method: 'get',
+    path: 'auth/signin',
+    method: 'post',
   },
   register: {
-    path: '/register',
+    path: 'auth/signup',
     method: 'post',
   },
 };

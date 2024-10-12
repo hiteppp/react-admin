@@ -39,11 +39,12 @@ export const request = (
 ): Promise<AxiosResponse<any, any>> => {
   const api = (apiConfig as any)[name];
 
-  const { url, method } = api;
+  const { path, method } = api;
+
   if (method === 'get') {
-    return get(url, params);
+    return get(path, params);
   } else {
-    return post(url, params);
+    return post(path, params);
   }
 };
 
