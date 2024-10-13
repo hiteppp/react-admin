@@ -23,11 +23,13 @@ export default () => {
     <div
       style={{
         display: 'flex',
+        flexDirection:'column',
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
       }}
     >
+      <h1 style={{fontSize:40,fontWeight:'bold',marginBottom:30}}>选课系统登录</h1>
       <Form
         name="basic"
         labelCol={{ span: 8 }}

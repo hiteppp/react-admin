@@ -1,15 +1,11 @@
 import { Button, Form, FormProps, Input, Radio, message } from 'antd';
 import styles from './index.module.less';
 import { request } from '@/apis/request';
+import { useNavigate } from 'react-router-dom';
 type FieldType = {
   username: string;
   password: string;
   role_type: string;
-};
-const onFinish: FormProps<FieldType>['onFinish'] = async values => {
-  console.log('Success:', values);
-  let { data } = await request('register', values);
-  console.log(data);
 };
 
 const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = errorInfo => {
@@ -17,16 +13,29 @@ const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = errorInfo => {
 };
 
 export default () => {
-  const [messageApi, contextHolder] = message.useMessage();
+  const navigate = useNavigate();
+  const onFinish: FormProps<FieldType>['onFinish'] = async values => {
+    try {
+      await request('register', values);
+      message.success('注册成功');
+      navigate('/login');
+    } catch (error: any) {
+      message.error(error.response.data.message[0]);
+    }
+  };
   return (
     <div
       style={{
         display: 'flex',
+        flexDirection:'column',
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
       }}
     >
+      <h1 style={{ fontSize: 40, fontWeight: 'bold', marginBottom: 30 }}>
+        选课系统注册
+      </h1>
       <Form
         name="basic"
         labelCol={{ span: 8 }}

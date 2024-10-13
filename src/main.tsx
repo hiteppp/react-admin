@@ -1,10 +1,13 @@
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
+import { BrowserRouter } from 'react-router-dom';
 import 'virtual:svg-icons-register';
 import { GlobalComponentProvider } from './Provider/index.tsx';
-import '@/assets/styles/reset.scss'
+import '@/assets/styles/reset.scss';
 createRoot(document.getElementById('root')!).render(
   <GlobalComponentProvider>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </GlobalComponentProvider>
 );
