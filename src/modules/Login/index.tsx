@@ -1,17 +1,11 @@
 import { Button, Form, FormProps, Input, Radio } from 'antd';
 import styles from './index.module.less';
 import { request } from '@/apis/request';
+import { useNavigate } from 'react-router-dom';
 type FieldType = {
   username: string;
   password: string;
   role_type: string;
-};
-const onFinish: FormProps<FieldType>['onFinish'] = async values => {
-  console.log('Success:', values);
-  const { data } = await request('login', values);
-  const { access_token } = data;
-  //把token存储在本地
-  localStorage.setItem('token', access_token);
 };
 
 const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = errorInfo => {
@@ -19,17 +13,37 @@ const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = errorInfo => {
 };
 
 export default () => {
+  const navigate = useNavigate();
+  const onFinish: FormProps<FieldType>['onFinish'] = async values => {
+    console.log('Success:', values);
+    const { data } = await request('login', values);
+    const { access_token, user } = data;
+    console.log('用户详细信息',user);
+    
+    //把token存储在本地
+    localStorage.setItem('token', access_token);
+    navigate('/', {
+      replace: false,
+      state: {
+        username: '刘振坤',
+        password: '123456',
+        role_type: 'student',
+      },
+    });
+  };
   return (
     <div
       style={{
         display: 'flex',
-        flexDirection:'column',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
       }}
     >
-      <h1 style={{fontSize:40,fontWeight:'bold',marginBottom:30}}>选课系统登录</h1>
+      <h1 style={{ fontSize: 40, fontWeight: 'bold', marginBottom: 30 }}>
+        选课系统登录
+      </h1>
       <Form
         name="basic"
         labelCol={{ span: 8 }}

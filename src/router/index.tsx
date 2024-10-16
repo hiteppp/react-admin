@@ -1,18 +1,23 @@
 import Login from '@/modules/Login';
 import Register from '@/modules/Register';
-import { Navigate } from 'react-router-dom';
+import App from '@/App';
 
-export default [
-  {
-    path: '/login',
-    element: <Login />,
-  },
-  {
-    path: '/register',
-    element: <Register />,
-  },
+import { createBrowserRouter } from 'react-router-dom';
+
+export const allRoutes = [
   {
     path: '/',
-    element: <Navigate to="/login" />,
+    element: <App />,
+    children: [
+      {
+        path: 'login',
+        element: <Login />,
+      },
+      {
+        path: 'register',
+        element: <Register />,
+      },
+    ],
   },
 ];
+export const router = createBrowserRouter(allRoutes);

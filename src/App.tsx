@@ -1,9 +1,11 @@
-import routes from '@/router';
-import { useRoutes } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+
 const App = () => {
-  //console.log(import.meta.env);
-  const element = useRoutes(routes);
-  return <>{element}</>;
+  return (
+    <>
+      <Outlet />
+    </>
+  );
 };
 
 export default App;

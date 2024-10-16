@@ -33,6 +33,20 @@ instance.interceptors.response.use(
   }
 );
 
+//请求拦截器，每次携带token
+instance.interceptors.request.use(
+  config => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);
+
 export const request = (
   name: string,
   params: any
