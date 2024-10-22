@@ -13,7 +13,7 @@ export const allRoutes = [
       {
         index: true,
         element: localStorage.getItem('token') ? (
-          <Navigate to="/" replace />
+          <Navigate to="/home" replace />
         ) : (
           <Navigate to="/login" replace />
         ),

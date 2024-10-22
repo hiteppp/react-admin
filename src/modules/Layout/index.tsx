@@ -1,21 +1,22 @@
-// import { useEffect, useState } from 'react';
-// import { useLocation } from 'react-router-dom';
+import { Layout } from 'antd';
+import Tabbar from './Tabbar';
+import Main from './Main';
+import Menu from './Menu';
+const { Footer } = Layout;
 
 export default () => {
-  // const {
-  //   state: { username, password, role_type },
-  // } = useLocation();
-  // const [personInfo, setPersonInfo] = useState<string | null>();
-  // useEffect(() => {
-  //   setPersonInfo(localStorage.getItem('token'));
-  // }, []);
   return (
-    <>
-      <h1>主页</h1>
-      <p>
-        我是主页
-        {/* {personInfo},{role_type},{username},{password} */}
-      </p>
-    </>
+    <Layout style={{ minHeight: '100vh' }}>
+      <Menu />
+      <Layout>
+        {/* 右边顶部 */}
+        <Tabbar />
+        {/* 内容 */}
+        <Main />
+        <Footer style={{ textAlign: 'center' }}>
+          Ant Design ©{new Date().getFullYear()} Created by Ant UED
+        </Footer>
+      </Layout>
+    </Layout>
   );
 };
