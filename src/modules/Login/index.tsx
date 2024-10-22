@@ -18,17 +18,12 @@ export default () => {
     console.log('Success:', values);
     const { data } = await request('login', values);
     const { access_token, user } = data;
-    console.log('用户详细信息',user);
-    
+    console.log('用户详细信息', user);
+
     //把token存储在本地
     localStorage.setItem('token', access_token);
-    navigate('/', {
+    navigate('/home', {
       replace: false,
-      state: {
-        username: '刘振坤',
-        password: '123456',
-        role_type: 'student',
-      },
     });
   };
   return (

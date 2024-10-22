@@ -20,11 +20,6 @@ export default () => {
       message.success('注册成功');
       navigate('/login', {
         replace: false,
-        state: {
-          username: '刘振坤',
-          password: '123456',
-          role_type: 'student',
-        },
       });
     } catch (error: any) {
       message.error(error.response.data.message[0]);
