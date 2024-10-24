@@ -22,7 +22,7 @@ export default () => {
 
     //把token存储在本地
     localStorage.setItem('token', access_token);
-    navigate('/home', {
+    navigate('/', {
       replace: false,
     });
   };

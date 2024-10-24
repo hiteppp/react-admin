@@ -1,4 +1,5 @@
 import { Breadcrumb, Layout, theme } from 'antd';
+import { Outlet } from 'react-router-dom';
 
 export default () => {
   const {
@@ -19,7 +20,7 @@ export default () => {
           borderRadius: borderRadiusLG,
         }}
       >
-        Bill is a cat.
+        <Outlet />
       </div>
     </Content>
   );

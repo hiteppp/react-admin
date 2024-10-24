@@ -1,24 +1,39 @@
 import Login from '@/modules/Login';
 import Register from '@/modules/Register';
-import App from '@/App';
-
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import Layout from '@/modules/Layout';
+
+import Info from '@/views/Info';
+import SubjectMap from '@/views/SubjectMap';
 
 export const allRoutes = [
   {
     path: '/',
-    element: <App />,
+    element: <Layout />,
     children: [
       {
         index: true,
         element: localStorage.getItem('token') ? (
-          <Navigate to="/home" replace />
+          <Navigate to="/info" replace />
         ) : (
           <Navigate to="/login" replace />
         ),
       },
+      {
+        path: 'info',
+        element: <Info />,
+      },
+      {
+        path: 'subjectMap',
+        element: <SubjectMap />,
+      },
     ],
+  },
+
+  {
+    path: 'subject',
+    element: <Layout />,
+    children: [{}],
   },
   {
     path: 'login',
@@ -28,9 +43,6 @@ export const allRoutes = [
     path: 'register',
     element: <Register />,
   },
-  {
-    path: 'home',
-    element: <Layout />,
-  },
+  {},
 ];
 export const router = createBrowserRouter(allRoutes);
